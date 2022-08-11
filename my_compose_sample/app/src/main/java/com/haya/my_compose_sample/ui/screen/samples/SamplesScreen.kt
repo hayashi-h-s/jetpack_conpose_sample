@@ -14,6 +14,7 @@ fun SamplesScreen(
     toLaunchedEffect: () -> Unit,
     toMessageList: () -> Unit,
     toDisposableEffect: () -> Unit,
+    toCustomView: () -> Unit,
 ) {
     Column {
         Button(onClick = {
@@ -50,6 +51,11 @@ fun SamplesScreen(
             toDisposableEffect()
         }) {
             Text(text = "DisposableEffect表示サンプル")
+        }
+        Button(onClick = {
+            toCustomView()
+        }) {
+            Text(text = "CustomView表示サンプル")
         }
     }
 }

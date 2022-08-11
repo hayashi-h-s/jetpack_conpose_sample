@@ -105,7 +105,7 @@ fun TopScreen(toDetail: () -> Unit, toSamples: () -> Unit) {
                     )
                 }
                 Column(Modifier.padding(all = 8.dp)) {
-                    val painter = rememberImagePainter(
+                    val painter = rememberImagePainter( // Coilを使用した画像表示
                         data = "https://picsum.photos/300/300",
                         builder = {
                             crossfade(true)

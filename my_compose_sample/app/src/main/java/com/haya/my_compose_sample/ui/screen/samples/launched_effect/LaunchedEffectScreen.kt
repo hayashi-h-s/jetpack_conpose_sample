@@ -4,7 +4,8 @@ import android.util.Log
 import android.widget.Toast
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.Button
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
@@ -22,6 +23,7 @@ fun LaunchedEffectScreen(
     toSamples: () -> Unit
 ) {
     val user by viewModel.user.collectAsState()
+    val scrollState = rememberScrollState()
 
     // このログが何度も実行される
     Log.d("TAG", "Logs = // このログが何度も実行されるのでサーバーの付加が上がる")
@@ -31,8 +33,7 @@ fun LaunchedEffectScreen(
         Log.d("TAG", "Logs = // LaunchedEffectの中なら1回のみの実行")
     }
 
-    LazyColumn { // scrollするために追加
-        item {
+    Column(Modifier.verticalScroll(scrollState)) { // Modifier.verticalScroll(scrollState)でスクロール可能に
             Button(onClick = {
                 toSamples()
             }) {
@@ -50,7 +51,7 @@ fun LaunchedEffectScreen(
             LaunchedEffectSampleToggle()
 
             LaunchedEffectSampleCounter()
-        }
+
     }
 }
 
@@ -61,7 +62,7 @@ fun LaunchedEffectSampleToggle() {
     var state by remember { mutableStateOf(false) }
 
     if (state) {
-        LaunchedEffect(Unit) { // Unitだと1度だけ実行
+        LaunchedEffect(Unit) { // Unitだと1度だけ実行 // 再コンポジションでメソッド内を再度実行
             Toast.makeText(context, "start $state", Toast.LENGTH_SHORT).show()
             delay(2000)
             Toast.makeText(context, "end $state", Toast.LENGTH_SHORT).show()

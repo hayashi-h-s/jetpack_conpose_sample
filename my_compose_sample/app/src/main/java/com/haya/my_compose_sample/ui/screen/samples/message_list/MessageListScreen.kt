@@ -8,7 +8,9 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.Button
 import androidx.compose.material.MaterialTheme
@@ -24,14 +26,23 @@ import androidx.compose.ui.unit.dp
 import com.haya.my_compose_sample.R
 import com.haya.my_compose_sample.models.sample_models.SampleMessage
 import com.haya.my_compose_sample.ui.theme.My_compose_sampleTheme
+import kotlinx.coroutines.launch
 
 
 @Composable
 fun MessageListScreen(toSamples: () -> Unit) {
     val messageList = mutableListOf<SampleMessage>()
 
+    val scrollState = rememberLazyListState()
+    val coroutineScope = rememberCoroutineScope()
+
     for (i in 1..100) {
-        messageList.add(SampleMessage("test_author$i", "サンプルテキスト。サンプルテキスト。サンプルテキスト。サンプルテキスト。サンプルテキスト。サンプルテキスト。サンプルテキスト。サンプルテキスト。サンプルテキスト。サンプルテキスト。サンプルテキスト。$i"))
+        messageList.add(
+            SampleMessage(
+                "test_author$i",
+                "サンプルテキスト。サンプルテキスト。サンプルテキスト。サンプルテキスト。サンプルテキスト。サンプルテキスト。サンプルテキスト。サンプルテキスト。サンプルテキスト。サンプルテキスト。サンプルテキスト。$i"
+            )
+        )
     }
 
     Column {
@@ -41,15 +52,34 @@ fun MessageListScreen(toSamples: () -> Unit) {
             Text(text = "Samples画面へ")
         }
 
+        Button(onClick = {
+            coroutineScope.launch {
+                scrollState.animateScrollToItem(0)
+            }
+        }) {
+            Text(text = "一番上にスクロール")
+        }
+
+        Button(onClick = {
+            coroutineScope.launch {
+                scrollState.animateScrollToItem(messageList.size - 1)
+            }
+        }) {
+            Text("一番下にスクロール")
+        }
+
         Text("MessageListサンプル")
 
-        MessageList(messageList)
+        MessageList(messageList, scrollState)
     }
 }
 
 @Composable
-fun MessageList(messageList: List<SampleMessage>) {
-    LazyColumn {
+fun MessageList(
+    messageList: List<SampleMessage>,
+    scrollState: LazyListState
+) {
+    LazyColumn(state = scrollState) {
         items(messageList) { message ->
             MessageCard2(msg = message)
         }
@@ -58,7 +88,11 @@ fun MessageList(messageList: List<SampleMessage>) {
 
 @Composable
 fun MessageCard1(msg: SampleMessage) {
-    Row(modifier = Modifier.padding(all = 8.dp).fillMaxWidth()) {
+    Row(
+        modifier = Modifier
+            .padding(all = 8.dp)
+            .fillMaxWidth()
+    ) {
         Image(
             painter = painterResource(id = R.drawable.ic_person),
             contentDescription = null,
@@ -144,7 +178,9 @@ fun MessageCard2(msg: SampleMessage) {
                 color = surfaceColor,
                 // animateContentSizeは、Surfaceのサイズを徐々に変化させます。
                 // Surfaceで定義されている様々な要素(色、形、行数など)
-                modifier = Modifier.animateContentSize().padding(1.dp)
+                modifier = Modifier
+                    .animateContentSize()
+                    .padding(1.dp)
             ) {
                 Text(
                     text = msg.body,

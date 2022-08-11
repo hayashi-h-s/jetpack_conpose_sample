@@ -9,6 +9,7 @@ import com.haya.my_compose_sample.ui.screen.detail.DetailScreen
 import com.haya.my_compose_sample.ui.screen.detail.DetailViewModel
 import com.haya.my_compose_sample.ui.screen.samples.SamplesScreen
 import com.haya.my_compose_sample.ui.screen.samples.conter.CounterScreen
+import com.haya.my_compose_sample.ui.screen.samples.custom_view.CustomViewScreen
 import com.haya.my_compose_sample.ui.screen.samples.disposable_effect.DisposableEffectScreen
 import com.haya.my_compose_sample.ui.screen.samples.launched_effect.LaunchedEffectScreen
 import com.haya.my_compose_sample.ui.screen.samples.launched_effect.LaunchedEffectViewModel
@@ -43,6 +44,7 @@ fun MyApp() {
                 { navController.navigate("launchedEffect") },
                 { navController.navigate("messageList") },
                 { navController.navigate("disposableEffect") },
+                { navController.navigate("customView") },
             )
         }
         composable("counter") {
@@ -67,6 +69,11 @@ fun MyApp() {
         }
         composable("disposableEffect") {
             DisposableEffectScreen {
+                navController.navigate("samples")
+            }
+        }
+        composable("customView") {
+            CustomViewScreen {
                 navController.navigate("samples")
             }
         }

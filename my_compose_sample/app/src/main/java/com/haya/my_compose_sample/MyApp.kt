@@ -8,6 +8,7 @@ import androidx.navigation.compose.rememberNavController
 import com.haya.my_compose_sample.ui.screen.detail.DetailScreen
 import com.haya.my_compose_sample.ui.screen.detail.DetailViewModel
 import com.haya.my_compose_sample.ui.screen.samples.SamplesScreen
+import com.haya.my_compose_sample.ui.screen.samples.constraint_layout.ConstraintLayoutScreen
 import com.haya.my_compose_sample.ui.screen.samples.conter.CounterScreen
 import com.haya.my_compose_sample.ui.screen.samples.custom_view.CustomViewScreen
 import com.haya.my_compose_sample.ui.screen.samples.disposable_effect.DisposableEffectScreen
@@ -45,6 +46,7 @@ fun MyApp() {
                 { navController.navigate("messageList") },
                 { navController.navigate("disposableEffect") },
                 { navController.navigate("customView") },
+                { navController.navigate("constraintLayout") },
             )
         }
         composable("counter") {
@@ -74,6 +76,11 @@ fun MyApp() {
         }
         composable("customView") {
             CustomViewScreen {
+                navController.navigate("samples")
+            }
+        }
+        composable("constraintLayout") {
+            ConstraintLayoutScreen {
                 navController.navigate("samples")
             }
         }

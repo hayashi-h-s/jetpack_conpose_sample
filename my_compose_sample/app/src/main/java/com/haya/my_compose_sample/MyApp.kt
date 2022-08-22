@@ -17,6 +17,7 @@ import com.haya.my_compose_sample.ui.screen.samples.launched_effect.LaunchedEffe
 import com.haya.my_compose_sample.ui.screen.samples.list_view.ListViewScreen
 import com.haya.my_compose_sample.ui.screen.samples.message_list.MessageListScreen
 import com.haya.my_compose_sample.ui.screen.samples.text_field.TextFieldScreen
+import com.haya.my_compose_sample.ui.screen.samples.theme_sample.ThemeSampleScreen
 import com.haya.my_compose_sample.ui.screen.top.TopScreen
 
 @Composable
@@ -47,6 +48,7 @@ fun MyApp() {
                 { navController.navigate("disposableEffect") },
                 { navController.navigate("customView") },
                 { navController.navigate("constraintLayout") },
+                { navController.navigate("themeSampleScreen") },
             )
         }
         composable("counter") {
@@ -81,6 +83,11 @@ fun MyApp() {
         }
         composable("constraintLayout") {
             ConstraintLayoutScreen {
+                navController.navigate("samples")
+            }
+        }
+        composable("themeSampleScreen") {
+            ThemeSampleScreen {
                 navController.navigate("samples")
             }
         }

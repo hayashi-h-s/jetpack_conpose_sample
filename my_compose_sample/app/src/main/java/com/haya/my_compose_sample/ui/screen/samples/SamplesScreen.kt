@@ -16,6 +16,7 @@ fun SamplesScreen(
     toDisposableEffect: () -> Unit,
     toCustomView: () -> Unit,
     toConstraintLayout: () -> Unit,
+    toThemeSampleScreen: () -> Unit,
 ) {
     Column {
         Button(onClick = {
@@ -62,6 +63,11 @@ fun SamplesScreen(
             toConstraintLayout()
         }) {
             Text(text = "ConstraintLayout表示サンプル")
+        }
+        Button(onClick = {
+            toThemeSampleScreen()
+        }) {
+            Text(text = "Themeサンプル")
         }
     }
 }

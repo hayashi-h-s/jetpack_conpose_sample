@@ -16,6 +16,7 @@ import com.haya.my_compose_sample.ui.screen.samples.launched_effect.LaunchedEffe
 import com.haya.my_compose_sample.ui.screen.samples.launched_effect.LaunchedEffectViewModel
 import com.haya.my_compose_sample.ui.screen.samples.list_view.ListViewScreen
 import com.haya.my_compose_sample.ui.screen.samples.message_list.MessageListScreen
+import com.haya.my_compose_sample.ui.screen.samples.room_sample.RoomSampleScreen
 import com.haya.my_compose_sample.ui.screen.samples.text_field.TextFieldScreen
 import com.haya.my_compose_sample.ui.screen.samples.theme_sample.ThemeSampleScreen
 import com.haya.my_compose_sample.ui.screen.top.TopScreen
@@ -49,6 +50,7 @@ fun MyApp() {
                 { navController.navigate("customView") },
                 { navController.navigate("constraintLayout") },
                 { navController.navigate("themeSampleScreen") },
+                { navController.navigate("roomSampleScreen") },
             )
         }
         composable("counter") {
@@ -88,6 +90,11 @@ fun MyApp() {
         }
         composable("themeSampleScreen") {
             ThemeSampleScreen {
+                navController.navigate("samples")
+            }
+        }
+        composable("roomSampleScreen") {
+            RoomSampleScreen {
                 navController.navigate("samples")
             }
         }

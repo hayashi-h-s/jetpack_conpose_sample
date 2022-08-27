@@ -17,6 +17,7 @@ fun SamplesScreen(
     toCustomView: () -> Unit,
     toConstraintLayout: () -> Unit,
     toThemeSampleScreen: () -> Unit,
+    toRoomSampleScreen: () -> Unit,
 ) {
     Column {
         Button(onClick = {
@@ -68,6 +69,11 @@ fun SamplesScreen(
             toThemeSampleScreen()
         }) {
             Text(text = "Themeサンプル")
+        }
+        Button(onClick = {
+            toRoomSampleScreen()
+        }) {
+            Text(text = "Roomサンプル")
         }
     }
 }

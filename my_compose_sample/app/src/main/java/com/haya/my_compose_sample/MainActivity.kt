@@ -12,7 +12,11 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             My_compose_sampleTheme {
-                MyApp()
+//                // topにSimpleBottomNavigationを設置することですべての画面で表示される
+//                Scaffold(bottomBar = { SimpleBottomNavigation() }) {
+//                    it
+                    MyApp()
+//                }
             }
         }
     }

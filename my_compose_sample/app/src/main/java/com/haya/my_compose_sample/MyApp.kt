@@ -8,6 +8,7 @@ import androidx.navigation.compose.rememberNavController
 import com.haya.my_compose_sample.ui.screen.detail.DetailScreen
 import com.haya.my_compose_sample.ui.screen.detail.DetailViewModel
 import com.haya.my_compose_sample.ui.screen.samples.SamplesScreen
+import com.haya.my_compose_sample.ui.screen.samples.bottom_navigation.BottomNavigationSampleScreen
 import com.haya.my_compose_sample.ui.screen.samples.constraint_layout.ConstraintLayoutScreen
 import com.haya.my_compose_sample.ui.screen.samples.conter.CounterScreen
 import com.haya.my_compose_sample.ui.screen.samples.custom_view.CustomViewScreen
@@ -51,6 +52,7 @@ fun MyApp() {
                 { navController.navigate("constraintLayout") },
                 { navController.navigate("themeSampleScreen") },
                 { navController.navigate("roomSampleScreen") },
+                { navController.navigate("bottomNavigationSampleScreen") },
             )
         }
         composable("counter") {
@@ -95,6 +97,21 @@ fun MyApp() {
         }
         composable("roomSampleScreen") {
             RoomSampleScreen {
+                navController.navigate("samples")
+            }
+        }
+        composable("bottomNavigationSampleScreen") {
+            BottomNavigationSampleScreen {
+                navController.navigate("samples")
+            }
+        }
+        composable("bottomNavigationProfileScreen") {
+            BottomNavigationSampleScreen {
+                navController.navigate("samples")
+            }
+        }
+        composable("bottomNavigationMailScreen") {
+            BottomNavigationSampleScreen {
                 navController.navigate("samples")
             }
         }

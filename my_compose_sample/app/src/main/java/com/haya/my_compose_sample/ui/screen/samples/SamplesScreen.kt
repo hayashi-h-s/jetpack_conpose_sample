@@ -19,6 +19,7 @@ fun SamplesScreen(
     toThemeSampleScreen: () -> Unit,
     toRoomSampleScreen: () -> Unit,
     toBottomNavigationSampleScreen: () -> Unit,
+    toPreviewParameterScreen: () -> Unit,
 ) {
     Column {
         Button(onClick = {
@@ -80,6 +81,11 @@ fun SamplesScreen(
             toBottomNavigationSampleScreen()
         }) {
             Text(text = "BottomNavigationSampleサンプル")
+        }
+        Button(onClick = {
+            toPreviewParameterScreen()
+        }) {
+            Text(text = "PreviewParameterScreenサンプル")
         }
     }
 }

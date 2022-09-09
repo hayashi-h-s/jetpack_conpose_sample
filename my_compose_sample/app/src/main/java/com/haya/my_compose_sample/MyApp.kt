@@ -17,6 +17,9 @@ import com.haya.my_compose_sample.ui.screen.samples.launched_effect.LaunchedEffe
 import com.haya.my_compose_sample.ui.screen.samples.launched_effect.LaunchedEffectViewModel
 import com.haya.my_compose_sample.ui.screen.samples.list_view.ListViewScreen
 import com.haya.my_compose_sample.ui.screen.samples.message_list.MessageListScreen
+import com.haya.my_compose_sample.ui.screen.samples.preview_parameter.PreviewParameterScreen
+import com.haya.my_compose_sample.ui.screen.samples.preview_parameter.models.ExampleUiState
+import com.haya.my_compose_sample.ui.screen.samples.preview_parameter.models.Memo
 import com.haya.my_compose_sample.ui.screen.samples.room_sample.RoomSampleScreen
 import com.haya.my_compose_sample.ui.screen.samples.text_field.TextFieldScreen
 import com.haya.my_compose_sample.ui.screen.samples.theme_sample.ThemeSampleScreen
@@ -53,6 +56,7 @@ fun MyApp() {
                 { navController.navigate("themeSampleScreen") },
                 { navController.navigate("roomSampleScreen") },
                 { navController.navigate("bottomNavigationSampleScreen") },
+                { navController.navigate("previewParameterScreen") },
             )
         }
         composable("counter") {
@@ -112,6 +116,13 @@ fun MyApp() {
         }
         composable("bottomNavigationMailScreen") {
             BottomNavigationSampleScreen {
+                navController.navigate("samples")
+            }
+        }
+        composable("previewParameterScreen") {
+            PreviewParameterScreen(uiState = ExampleUiState(
+                memos = List(50) { Memo(title = "タイトル No.$it") }
+            )) {
                 navController.navigate("samples")
             }
         }

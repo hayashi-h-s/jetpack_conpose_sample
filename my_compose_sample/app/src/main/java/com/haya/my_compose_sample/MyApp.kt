@@ -21,6 +21,7 @@ import com.haya.my_compose_sample.ui.screen.samples.preview_parameter.PreviewPar
 import com.haya.my_compose_sample.ui.screen.samples.preview_parameter.models.ExampleUiState
 import com.haya.my_compose_sample.ui.screen.samples.preview_parameter.models.Memo
 import com.haya.my_compose_sample.ui.screen.samples.room_sample.RoomSampleScreen
+import com.haya.my_compose_sample.ui.screen.samples.tab_in_view_pager.TabInViewPagerScreen
 import com.haya.my_compose_sample.ui.screen.samples.text_field.TextFieldScreen
 import com.haya.my_compose_sample.ui.screen.samples.theme_sample.ThemeSampleScreen
 import com.haya.my_compose_sample.ui.screen.top.TopScreen
@@ -57,6 +58,7 @@ fun MyApp() {
                 { navController.navigate("roomSampleScreen") },
                 { navController.navigate("bottomNavigationSampleScreen") },
                 { navController.navigate("previewParameterScreen") },
+                { navController.navigate("tabInViewPagerScreen") },
             )
         }
         composable("counter") {
@@ -123,6 +125,11 @@ fun MyApp() {
             PreviewParameterScreen(uiState = ExampleUiState(
                 memos = List(50) { Memo(title = "タイトル No.$it") }
             )) {
+                navController.navigate("samples")
+            }
+        }
+        composable("tabInViewPagerScreen") {
+            TabInViewPagerScreen {
                 navController.navigate("samples")
             }
         }

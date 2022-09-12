@@ -20,6 +20,7 @@ fun SamplesScreen(
     toRoomSampleScreen: () -> Unit,
     toBottomNavigationSampleScreen: () -> Unit,
     toPreviewParameterScreen: () -> Unit,
+    toTabInViewPagerScreen: () -> Unit,
 ) {
     Column {
         Button(onClick = {
@@ -86,6 +87,11 @@ fun SamplesScreen(
             toPreviewParameterScreen()
         }) {
             Text(text = "PreviewParameterScreenサンプル")
+        }
+        Button(onClick = {
+            toTabInViewPagerScreen()
+        }) {
+            Text(text = "TabInViewPagerScreen")
         }
     }
 }

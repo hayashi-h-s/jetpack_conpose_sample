@@ -1,9 +1,12 @@
 package com.haya.my_compose_sample.ui.screen.samples
 
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.Button
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
 
 @Composable
 fun SamplesScreen(
@@ -21,8 +24,9 @@ fun SamplesScreen(
     toBottomNavigationSampleScreen: () -> Unit,
     toPreviewParameterScreen: () -> Unit,
     toTabInViewPagerScreen: () -> Unit,
+    toExoPlayerSampleScreen: () -> Unit,
 ) {
-    Column {
+    Column(Modifier.verticalScroll(rememberScrollState())) {
         Button(onClick = {
             toTop()
         }) {
@@ -92,6 +96,11 @@ fun SamplesScreen(
             toTabInViewPagerScreen()
         }) {
             Text(text = "TabInViewPagerScreen")
+        }
+        Button(onClick = {
+            toExoPlayerSampleScreen()
+        }) {
+            Text(text = "ExoPlayerSampleScreen")
         }
     }
 }

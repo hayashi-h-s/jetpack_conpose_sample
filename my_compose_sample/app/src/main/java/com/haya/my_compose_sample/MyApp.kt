@@ -13,6 +13,8 @@ import com.haya.my_compose_sample.ui.screen.samples.constraint_layout.Constraint
 import com.haya.my_compose_sample.ui.screen.samples.conter.CounterScreen
 import com.haya.my_compose_sample.ui.screen.samples.custom_view.CustomViewScreen
 import com.haya.my_compose_sample.ui.screen.samples.disposable_effect.DisposableEffectScreen
+import com.haya.my_compose_sample.ui.screen.samples.exo_player.ExoPlayerSampleScreen
+import com.haya.my_compose_sample.ui.screen.samples.exo_player.ExoPlayerViewModel
 import com.haya.my_compose_sample.ui.screen.samples.launched_effect.LaunchedEffectScreen
 import com.haya.my_compose_sample.ui.screen.samples.launched_effect.LaunchedEffectViewModel
 import com.haya.my_compose_sample.ui.screen.samples.list_view.ListViewScreen
@@ -59,6 +61,7 @@ fun MyApp() {
                 { navController.navigate("bottomNavigationSampleScreen") },
                 { navController.navigate("previewParameterScreen") },
                 { navController.navigate("tabInViewPagerScreen") },
+                { navController.navigate("exoPlayerSampleScreen") },
             )
         }
         composable("counter") {
@@ -131,6 +134,12 @@ fun MyApp() {
         composable("tabInViewPagerScreen") {
             TabInViewPagerScreen {
                 navController.navigate("samples")
+            }
+        }
+        composable("exoPlayerSampleScreen") {
+            val vm: ExoPlayerViewModel = viewModel()
+            ExoPlayerSampleScreen(vm) {
+                navController.navigate("samples",)
             }
         }
         //end region

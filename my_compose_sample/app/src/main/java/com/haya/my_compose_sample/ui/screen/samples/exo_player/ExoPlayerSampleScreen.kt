@@ -19,10 +19,11 @@ import com.google.android.exoplayer2.ExoPlayer
 import com.google.android.exoplayer2.MediaItem
 import com.google.android.exoplayer2.PlaybackException
 import com.google.android.exoplayer2.Player
-import com.google.android.exoplayer2.source.MediaSource
-import com.google.android.exoplayer2.source.ProgressiveMediaSource
-import com.google.android.exoplayer2.ui.StyledPlayerView
-import com.google.android.exoplayer2.upstream.DefaultDataSource
+import com.google.android.exoplayer2.audio.AudioAttributes
+import com.google.android.exoplayer2.ui.PlayerView
+import com.google.android.exoplayer2.upstream.DataSpec
+import com.google.android.exoplayer2.upstream.RawResourceDataSource
+import com.haya.my_compose_sample.R
 import kotlinx.coroutines.runBlocking
 
 @Composable
@@ -64,18 +65,33 @@ fun ExoPlayerSampleScreen(vm: ExoPlayerViewModel, toSamples: () -> Unit) {
 
 @Composable
 fun VideoPlayer() {
-    val videoUrl = "https://storage.googleapis.com/exoplayer-test-media-0/BigBuckBunny_320x180.mp4"
     val context = LocalContext.current
+//    val rawDataSource = RawResourceDataSource(context)
+//    rawDataSource.open(DataSpec(RawResourceDataSource.buildRawResourceUri(R.raw.flower)))
 
-//    val exoPlayer = remember(context) {
-//        ExoPlayer.Builder(context).build().apply {
-//            val videoSource = ProgressiveMediaSource
-//                .Factory(DefaultDataSource.Factory(context))
-//                .createMediaSource(MediaItem.fromUri(videoUrl))
-//            this.setMediaSource(videoSource)
-//            this.prepare()
-//        }
-//    }
+    val videoUrl = "https://storage.googleapis.com/exoplayer-test-media-0/BigBuckBunny_320x180.mp4"
+
+    fun createMediaItems(): MutableList<MediaItem> {
+        val mediaItems = mutableListOf<MediaItem>()
+
+        val flowerrawDataSource = RawResourceDataSource(context)
+        val grassrawDataSource = RawResourceDataSource(context)
+        val sky_movierawDataSource = RawResourceDataSource(context)
+        flowerrawDataSource.open(DataSpec(RawResourceDataSource.buildRawResourceUri(R.raw.flower)))
+        grassrawDataSource.open(DataSpec(RawResourceDataSource.buildRawResourceUri(R.raw.grass)))
+        sky_movierawDataSource.open(DataSpec(RawResourceDataSource.buildRawResourceUri(R.raw.sky_movie)))
+        mediaItems.add(
+            MediaItem.fromUri(flowerrawDataSource.uri!!)
+        )
+        mediaItems.add(
+            MediaItem.fromUri(grassrawDataSource.uri!!)
+        )
+        mediaItems.add(
+            MediaItem.fromUri(sky_movierawDataSource.uri!!)
+        )
+        return mediaItems
+    }
+
     var playWhenReady by rememberSaveable { mutableStateOf(true) }
     var playbackStateRemember by rememberSaveable { mutableStateOf(1) }
 
@@ -109,27 +125,30 @@ fun VideoPlayer() {
     val exoPlayer = remember(context) { // rememberでstate管理しないと、再コンポーズ時に何度も再生されてしまう。
         ExoPlayer.Builder(context).build().apply {
 
+            val mediaItems = createMediaItems()
             Log.d("TAG", "Logs = val exoPlayer = remember(context) { // r");
 
-            val videoSource: MediaSource = ProgressiveMediaSource
-                .Factory(DefaultDataSource.Factory(context))
-                .createMediaSource(MediaItem.fromUri(videoUrl))
-            this.setMediaSource(videoSource)
+//            val videoSource: MediaSource = ProgressiveMediaSource
+//                .Factory(DefaultDataSource.Factory(context))
+//                .createMediaSource(MediaItem.fromUri(videoUrl))
+//                .createMediaSource(MediaItem.fromUri(rawDataSource.uri!!)) // mp4等の場合
+
+            this.setAudioAttributes(AudioAttributes.DEFAULT, true) // オーディオの属性を設定
+//            this.setMediaSource(videoSource)
             this.addListener(playerEventListener)
 
-            val playerView = StyledPlayerView(context)
+            this.setMediaItems(mediaItems, true) // 動画のリストをセット、resetItem = 初期のプレイリストポジション
 
-//            playerView.
-//
-//            playerView.player = this // プレーヤーをビューにアタッチする
+            this.repeatMode = Player.REPEAT_MODE_ALL // プレイリスト内をリピート再生
         }
     }
 
+//    val playerView = PlayerControlView(context) // 非推奨→ StyledPlayerViewを使う
+//    val playerView = PlayerView(context)
+//    playerView.player = exoPlayer
+
 //    val exoPlayer = ExoPlayer.Builder(context).build() // プレーヤーの作成
 //    val playerView = PlayerControlView(context) // 非推奨→ StyledPlayerViewを使う
-//    val mediaItem = MediaItem.fromUri(videoUrl)
-//    exoPlayer.setMediaItem(mediaItem)
-
 //    exoPlayer.prepare() // 準備する ※再このポーズ時にこれがないと
 
     LaunchedEffect(exoPlayer) {
@@ -138,6 +157,7 @@ fun VideoPlayer() {
 
         exoPlayer.prepare() // 準備する ※再このポーズ時にこれがないと
         exoPlayer.playWhenReady = playWhenReady // trueで再生
+
     }
 
 //    LaunchedEffect(playWhenReady) {
@@ -146,16 +166,21 @@ fun VideoPlayer() {
 
     DisposableEffect( // 画面を破棄するときに、リリースする
         Column {
+            Button(onClick = {
+                exoPlayer.next()
+            }) {
+                Text(text = "次のプレイリストへ")
+            }
+
+            Button(onClick = {
+                exoPlayer.previous()
+            }) {
+                Text(text = "前のプレイリストへ")
+            }
+
             if (!playWhenReady) {
                 Button(onClick = {
-//                    if (!playWhenReady) {
-//                        Log.d("TAG", "Logs = exoPlayer.play() ")
                     exoPlayer.play()
-//                    }
-//                    else {
-//                        Log.d("TAG", "Logs = exoPlayer.stop()")
-//                        exoPlayer.pause()
-//                    }
                 }) {
                     Text(text = "再生ボタン")
                 }
@@ -175,24 +200,24 @@ fun VideoPlayer() {
                         }
                     },
                 factory = {
-                    StyledPlayerView(context).apply {
-//                        controllerAutoShow = false // 再生ボタン等を表示するか
-//                        useController = false // 各種ユーザーのボタンを一切表示しない
-//                        useController =
+//                    StyledPlayerView(context).apply {
+////                        controllerAutoShow = false // 再生ボタン等を表示するか
+////                        useController = false // 各種ユーザーのボタンを一切表示しない
+////                        useController =
+//
+//                        setShowRewindButton(false)
+//                        setShowFastForwardButton(false)
+//                        setShowPreviousButton(false)
+//                        setShowNextButton(false)
 
-                        setShowRewindButton(false)
-                        setShowFastForwardButton(false)
-                        setShowPreviousButton(false)
-                        setShowNextButton(false)
-
-
-
-//                        setShowMultiWindowTimeBar()
-//                        hideController() //
-
-
-                        player = exoPlayer
+////                        setShowMultiWindowTimeBar()
+////                        hideController() //
+//                        player = exoPlayer
+//                    }
+                    PlayerView(context).apply {
+                        player = exoPlayer // プレーヤーをビューにアタッチする
                     }
+//                    playerView
                 })
         }
     ) {
@@ -202,6 +227,7 @@ fun VideoPlayer() {
         }
     }
 }
+
 
 // プレイヤーの解放 ExoPlayer.release
 // プレイリストの作成とプレーヤーの準備

@@ -74,7 +74,7 @@ fun MainScreen(todoList: SnapshotStateList<Task>) {
                     if (checkedState) {
                         Text(
                             text = todo.task,
-                            style = TextStyle(textDecoration = TextDecoration.LineThrough),
+                             style = TextStyle(textDecoration = TextDecoration.LineThrough),
                             modifier = Modifier
                                 .padding(16.dp)
                         )

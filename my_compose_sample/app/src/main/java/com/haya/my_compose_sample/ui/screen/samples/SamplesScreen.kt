@@ -25,6 +25,7 @@ fun SamplesScreen(
     toPreviewParameterScreen: () -> Unit,
     toTabInViewPagerScreen: () -> Unit,
     toExoPlayerSampleScreen: () -> Unit,
+    toBottomSheetSampleScreen: () -> Unit,
 ) {
     Column(Modifier.verticalScroll(rememberScrollState())) {
         Button(onClick = {
@@ -101,6 +102,11 @@ fun SamplesScreen(
             toExoPlayerSampleScreen()
         }) {
             Text(text = "ExoPlayerSampleScreen")
+        }
+        Button(onClick = {
+            toBottomSheetSampleScreen()
+        }) {
+            Text(text = "BottomSheetSampleScreen")
         }
     }
 }

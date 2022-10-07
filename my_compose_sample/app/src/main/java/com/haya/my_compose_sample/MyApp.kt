@@ -31,6 +31,7 @@ import com.haya.my_compose_sample.ui.screen.detail.DetailScreen
 import com.haya.my_compose_sample.ui.screen.detail.DetailViewModel
 import com.haya.my_compose_sample.ui.screen.samples.SamplesScreen
 import com.haya.my_compose_sample.ui.screen.samples.bottom_navigation.BottomNavigationSampleScreen
+import com.haya.my_compose_sample.ui.screen.samples.bottom_sheet.BottomSheetSampleScreen
 import com.haya.my_compose_sample.ui.screen.samples.constraint_layout.ConstraintLayoutScreen
 import com.haya.my_compose_sample.ui.screen.samples.conter.CounterScreen
 import com.haya.my_compose_sample.ui.screen.samples.custom_view.CustomViewScreen
@@ -85,6 +86,7 @@ fun MyApp() {
                 { navController.navigate("previewParameterScreen") },
                 { navController.navigate("tabInViewPagerScreen") },
                 { navController.navigate("exoPlayerSampleScreen") },
+                { navController.navigate("bottomSheetSampleScreen") },
             )
         }
         composable("counter") {
@@ -156,6 +158,11 @@ fun MyApp() {
         }
         composable("tabInViewPagerScreen") {
             TabInViewPagerScreen {
+                navController.navigate("samples")
+            }
+        }
+        composable("bottomSheetSampleScreen") {
+            BottomSheetSampleScreen {
                 navController.navigate("samples")
             }
         }

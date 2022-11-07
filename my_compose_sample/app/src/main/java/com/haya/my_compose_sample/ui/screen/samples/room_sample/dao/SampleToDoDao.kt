@@ -1,7 +1,7 @@
-package com.haya.my_compose_sample.dao
+package com.haya.my_compose_sample.ui.screen.samples.room_sample.dao
 
 import androidx.room.*
-import com.haya.my_compose_sample.models.sample_models.Task
+import com.haya.my_compose_sample.ui.screen.samples.room_sample.model.Task
 import java.util.*
 
 @Dao

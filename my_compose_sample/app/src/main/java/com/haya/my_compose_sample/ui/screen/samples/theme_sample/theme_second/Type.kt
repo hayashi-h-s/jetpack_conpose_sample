@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.haya.my_compose_sample.ui.theme_second
+package com.haya.my_compose_sample.ui.screen.samples.theme_sample.theme_second
 
 import androidx.compose.material.Typography
 import androidx.compose.ui.text.TextStyle

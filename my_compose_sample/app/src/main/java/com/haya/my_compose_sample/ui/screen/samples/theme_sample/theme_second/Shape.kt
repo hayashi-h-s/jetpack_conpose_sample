@@ -14,12 +14,15 @@
  * limitations under the License.
  */
 
-package com.haya.my_compose_sample.ui.theme_second
+package com.haya.my_compose_sample.ui.screen.samples.theme_sample.theme_second
 
-import androidx.compose.ui.graphics.Color
+import androidx.compose.foundation.shape.CutCornerShape
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.Shapes
+import androidx.compose.ui.unit.dp
 
-val Red200 = Color(0xfff297a2)
-val Red300 = Color(0xffea6d7e)
-val Red700 = Color(0xffdd0d3c)
-val Red800 = Color(0xffd00036)
-val Red900 = Color(0xffc20029)
+val JetnewsShapes = Shapes(
+    small = CutCornerShape(topStart = 8.dp),
+    medium = CutCornerShape(topStart = 24.dp),
+    large = RoundedCornerShape(8.dp)
+)

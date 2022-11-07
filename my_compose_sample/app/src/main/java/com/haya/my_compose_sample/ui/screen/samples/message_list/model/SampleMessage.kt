@@ -1,4 +1,4 @@
-package com.haya.my_compose_sample.models.sample_models
+package com.haya.my_compose_sample.ui.screen.samples.message_list.model
 
 data class SampleMessage(
     var author: String,

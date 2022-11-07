@@ -24,7 +24,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.haya.my_compose_sample.R
-import com.haya.my_compose_sample.models.sample_models.SampleMessage
+import com.haya.my_compose_sample.ui.screen.samples.message_list.model.SampleMessage
 import com.haya.my_compose_sample.ui.theme.My_compose_sampleTheme
 import kotlinx.coroutines.launch
 

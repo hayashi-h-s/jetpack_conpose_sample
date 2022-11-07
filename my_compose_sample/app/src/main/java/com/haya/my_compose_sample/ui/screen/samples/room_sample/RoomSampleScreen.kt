@@ -16,7 +16,7 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
 import com.haya.my_compose_sample.App
-import com.haya.my_compose_sample.models.sample_models.Task
+import com.haya.my_compose_sample.ui.screen.samples.room_sample.model.Task
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch

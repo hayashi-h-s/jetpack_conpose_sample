@@ -23,11 +23,10 @@ import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.haya.my_compose_sample.R
-import com.haya.my_compose_sample.models.sample_models.PostRepo
-import com.haya.my_compose_sample.models.sample_models.SamplePost
-import com.haya.my_compose_sample.ui.theme_second.JetnewsTheme
+import com.haya.my_compose_sample.ui.screen.samples.theme_sample.model.PostRepo
+import com.haya.my_compose_sample.ui.screen.samples.theme_sample.model.SamplePost
+import com.haya.my_compose_sample.ui.screen.samples.theme_sample.theme_second.JetnewsTheme
 import java.util.*
-
 
 @Composable
 fun ThemeSampleScreen(toSamples: () -> Unit) {

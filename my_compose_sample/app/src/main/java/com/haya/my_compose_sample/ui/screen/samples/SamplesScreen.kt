@@ -26,6 +26,7 @@ fun SamplesScreen(
     toTabInViewPagerScreen: () -> Unit,
     toExoPlayerSampleScreen: () -> Unit,
     toBottomSheetSampleScreen: () -> Unit,
+    toRotationAnimationScreen: () -> Unit,
 ) {
     Column(Modifier.verticalScroll(rememberScrollState())) {
         Button(onClick = {
@@ -107,6 +108,11 @@ fun SamplesScreen(
             toBottomSheetSampleScreen()
         }) {
             Text(text = "BottomSheetSampleScreen")
+        }
+        Button(onClick = {
+            toRotationAnimationScreen()
+        }) {
+            Text(text = "RotationAnimationScreen")
         }
     }
 }

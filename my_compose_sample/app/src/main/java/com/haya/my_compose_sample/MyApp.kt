@@ -46,6 +46,7 @@ import com.haya.my_compose_sample.ui.screen.samples.preview_parameter.PreviewPar
 import com.haya.my_compose_sample.ui.screen.samples.preview_parameter.models.ExampleUiState
 import com.haya.my_compose_sample.ui.screen.samples.preview_parameter.models.Memo
 import com.haya.my_compose_sample.ui.screen.samples.room_sample.RoomSampleScreen
+import com.haya.my_compose_sample.ui.screen.samples.rotation_animation.RotationAnimationScreen
 import com.haya.my_compose_sample.ui.screen.samples.tab_in_view_pager.TabInViewPagerScreen
 import com.haya.my_compose_sample.ui.screen.samples.text_field.TextFieldScreen
 import com.haya.my_compose_sample.ui.screen.samples.theme_sample.ThemeSampleScreen
@@ -87,6 +88,7 @@ fun MyApp() {
                 { navController.navigate("tabInViewPagerScreen") },
                 { navController.navigate("exoPlayerSampleScreen") },
                 { navController.navigate("bottomSheetSampleScreen") },
+                { navController.navigate("rotationAnimationScreen") },
             )
         }
         composable("counter") {
@@ -166,6 +168,11 @@ fun MyApp() {
                 navController.navigate("samples")
             }
         }
+        composable("rotationAnimationScreen") {
+            RotationAnimationScreen {
+                navController.navigate("samples")
+            }
+        }
         composable("exoPlayerSampleScreen") {
             val vm: ExoPlayerViewModel = viewModel()
 
@@ -222,7 +229,6 @@ fun VideoPlayer(uri: Uri) {
 //    rawDataSource.open(DataSpec(RawResourceDataSource.buildRawResourceUri(R.raw.flower)))
 
     val videoUrl = "https://storage.googleapis.com/exoplayer-test-media-0/BigBuckBunny_320x180.mp4"
-
 
     var playWhenReady by rememberSaveable { mutableStateOf(true) }
     var playbackStateRemember by rememberSaveable { mutableStateOf(1) }
@@ -295,6 +301,10 @@ fun VideoPlayer(uri: Uri) {
         exoPlayer.prepare() // 準備する ※再このポーズ時にこれがないと
         exoPlayer.playWhenReady = playWhenReady // trueで再生
 
+    }
+
+    val playerView = PlayerView(context).apply {
+        player = exoPlayer // プレーヤーをビューにアタッチする
     }
 
 //    LaunchedEffect(playWhenReady) {

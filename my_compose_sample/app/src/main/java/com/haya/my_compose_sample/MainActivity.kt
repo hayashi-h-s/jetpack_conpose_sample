@@ -5,6 +5,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
+import com.haya.my_compose_sample.presentation.util.Navigation
 import com.haya.my_compose_sample.ui.theme.My_compose_sampleTheme
 
 class MainActivity : ComponentActivity() {
@@ -15,7 +16,7 @@ class MainActivity : ComponentActivity() {
 //                // topにSimpleBottomNavigationを設置することですべての画面で表示される
 //                Scaffold(bottomBar = { SimpleBottomNavigation() }) {
 //                    it
-                    MyApp()
+                    Navigation()
 //                }
             }
         }
@@ -31,7 +32,7 @@ fun Greeting(name: String) {
 @Composable
 fun DefaultPreview() {
     My_compose_sampleTheme {
-        MyApp()
+        Navigation()
     }
 }
 

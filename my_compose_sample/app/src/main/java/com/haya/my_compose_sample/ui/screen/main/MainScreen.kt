@@ -1,4 +1,4 @@
-package com.haya.my_compose_sample.ui.screen.top
+package com.haya.my_compose_sample.ui.screen.main
 
 import android.annotation.SuppressLint
 import android.widget.Toast
@@ -30,7 +30,7 @@ import com.haya.my_compose_sample.ui.theme.My_compose_sampleTheme
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
-fun TopScreen(toDetail: () -> Unit, toSamples: () -> Unit) {
+fun MainScreen(toDetail: () -> Unit, toSamples: () -> Unit) {
     val context = LocalContext.current
     Scaffold(
         topBar = {
@@ -38,7 +38,7 @@ fun TopScreen(toDetail: () -> Unit, toSamples: () -> Unit) {
 //        fun TopAppBar(
 //            title: @Composable () -> Unit,
 //            modifier: Modifier = Modifier,
-//            navigationIcon: @Composable (() -> Unit)? = null,
+//            navigationIcon: @Composable (() -> Uni t)? = null,
 //            actions: @Composable RowScope.() -> Unit = {},
 //            backgroundColor: Color = MaterialTheme.colors.primarySurface,
 //            contentColor: Color = contentColorFor(backgroundColor),
@@ -171,6 +171,6 @@ fun TopScreen(toDetail: () -> Unit, toSamples: () -> Unit) {
 @Composable
 fun DefaultPreview() {
     My_compose_sampleTheme {
-        TopScreen({ }, { })
+        MainScreen({ }, { })
     }
 }

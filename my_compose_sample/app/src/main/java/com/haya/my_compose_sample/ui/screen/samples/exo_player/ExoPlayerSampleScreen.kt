@@ -18,7 +18,7 @@ import com.google.accompanist.pager.rememberPagerState
 import com.google.android.exoplayer2.upstream.DataSpec
 import com.google.android.exoplayer2.upstream.RawResourceDataSource
 import com.haya.my_compose_sample.R
-import com.haya.my_compose_sample.VideoPlayer
+import com.haya.my_compose_sample.presentation.util.VideoPlayer
 
 @OptIn(ExperimentalPagerApi::class)
 @Composable

@@ -7,112 +7,26 @@ import androidx.compose.material.Button
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import com.haya.my_compose_sample.presentation.util.route.SampleRouteType
 
 @Composable
 fun SamplesScreen(
-    toTop: () -> Unit,
-    toCounter: () -> Unit,
-    toTextField: () -> Unit,
-    toLazyColumn: () -> Unit,
-    toLaunchedEffect: () -> Unit,
-    toMessageList: () -> Unit,
-    toDisposableEffect: () -> Unit,
-    toCustomView: () -> Unit,
-    toConstraintLayout: () -> Unit,
-    toThemeSampleScreen: () -> Unit,
-    toRoomSampleScreen: () -> Unit,
-    toBottomNavigationSampleScreen: () -> Unit,
-    toPreviewParameterScreen: () -> Unit,
-    toTabInViewPagerScreen: () -> Unit,
-    toExoPlayerSampleScreen: () -> Unit,
-    toBottomSheetSampleScreen: () -> Unit,
-    toRotationAnimationScreen: () -> Unit,
+    backAction: () -> Unit,
+    toSampleDetail: (String) -> Unit,
 ) {
     Column(Modifier.verticalScroll(rememberScrollState())) {
         Button(onClick = {
-            toTop()
+            backAction()
         }) {
             Text(text = "Topへ")
         }
-        Button(onClick = {
-            toCounter()
-        }) {
-            Text(text = "Counter アプリへ")
-        }
-        Button(onClick = {
-            toTextField()
-        }) {
-            Text(text = "テキスト入力サンプルへ")
-        }
-        Button(onClick = {
-            toLazyColumn()
-        }) {
-            Text(text = "リスト表示サンプル")
-        }
-        Button(onClick = {
-            toLaunchedEffect()
-        }) {
-            Text(text = "LaunchedEffect表示サンプル")
-        }
-        Button(onClick = {
-            toMessageList()
-        }) {
-            Text(text = "MessageList表示サンプル")
-        }
-        Button(onClick = {
-            toDisposableEffect()
-        }) {
-            Text(text = "DisposableEffect表示サンプル")
-        }
-        Button(onClick = {
-            toCustomView()
-        }) {
-            Text(text = "CustomView表示サンプル")
-        }
-        Button(onClick = {
-            toConstraintLayout()
-        }) {
-            Text(text = "ConstraintLayout表示サンプル")
-        }
-        Button(onClick = {
-            toThemeSampleScreen()
-        }) {
-            Text(text = "Themeサンプル")
-        }
-        Button(onClick = {
-            toRoomSampleScreen()
-        }) {
-            Text(text = "Roomサンプル")
-        }
-        Button(onClick = {
-            toBottomNavigationSampleScreen()
-        }) {
-            Text(text = "BottomNavigationSampleサンプル")
-        }
-        Button(onClick = {
-            toPreviewParameterScreen()
-        }) {
-            Text(text = "PreviewParameterScreenサンプル")
-        }
-        Button(onClick = {
-            toTabInViewPagerScreen()
-        }) {
-            Text(text = "TabInViewPagerScreen")
-        }
-        Button(onClick = {
-            toExoPlayerSampleScreen()
-        }) {
-            Text(text = "ExoPlayerSampleScreen")
-        }
-        Button(onClick = {
-            toBottomSheetSampleScreen()
-        }) {
-            Text(text = "BottomSheetSampleScreen")
-        }
-        Button(onClick = {
-            toRotationAnimationScreen()
-        }) {
-            Text(text = "RotationAnimationScreen")
+
+        SampleRouteType.values().forEach { routeType ->
+            Button(onClick = {
+                toSampleDetail(routeType.route)
+            }) {
+                Text(text = routeType.title)
+            }
         }
     }
 }

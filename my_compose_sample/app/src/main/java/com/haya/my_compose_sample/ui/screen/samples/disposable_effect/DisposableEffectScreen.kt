@@ -35,7 +35,6 @@ fun DisposableEffectScreen(
     }
 }
 
-
 @Composable
 fun DisposableEffectSampleToggle() {
     val context = LocalContext.current // LocalContext.currentの説明 http://y-anz-m.blogspot.com/2021/04/jetpack-compose-composition-local.html

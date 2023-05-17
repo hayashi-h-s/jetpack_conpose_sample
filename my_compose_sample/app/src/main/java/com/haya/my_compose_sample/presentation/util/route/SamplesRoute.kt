@@ -16,5 +16,5 @@ enum class SampleRouteType(val route: String, val title: String) {
     PAGER_SCREEN("tabInViewPagerScreen","pater"),
     EXO_PLAYER_SCREEN("exoPlayerSampleScreen","exoPlayer"),
     BOTTOM_SHEET_SCREEN("bottomSheetSampleScreen","bottomSheet"),
-    ROTATION_ANIMATION_SCREEN("rotationAnimationScreen","Animation"),
+    ROTATION_ANIMATION_SCREEN("rotationAnimationScreen","RotationAnimation"),
 }

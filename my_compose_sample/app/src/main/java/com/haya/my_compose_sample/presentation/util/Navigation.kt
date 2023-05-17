@@ -158,18 +158,6 @@ fun Navigation() {
                             uriList.add(
                                 sky_movierawDataSource.uri!!
                             )
-
-
-//        mediaItems.add(
-//            MediaItem.fromUri(flowerrawDataSource.uri!!)
-//        )
-//        mediaItems.add(
-//            MediaItem.fromUri(grassrawDataSource.uri!!)
-//        )
-//        mediaItems.add(
-//            MediaItem.fromUri(sky_movierawDataSource.uri!!)
-//        )
-//        return mediaItems
                             return uriList
                         }
 
